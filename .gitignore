@@ -1,0 +1,88 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Build
+build/
+dist/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Operating systems
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# PyTest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+*.log
+
+# Cache backups (если резервные копии не должны храниться в Git)
+backups/*.bak
+backups/*.tmp
+
+# Runtime cache
+cache/*.tmp
+
+# NumPy
+*.npy
+*.npz
+
+# Исключаем автоматически созданные графики и изображения
+*.png
+*.jpg
+*.jpeg
+*.pdf
+*.svg
+
+# Исключение:
+# если в docs нужны изображения для отчета
+!docs/*.png
+!docs/*.jpg
+!docs/*.jpeg
