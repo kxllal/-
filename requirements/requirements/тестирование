@@ -1,0 +1,168 @@
+# tests/test_matrix.py
+
+import unittest
+from main import MatrixCalculator
+
+class TestMatrixCalculator(unittest.TestCase):
+    def setUp(self):
+        self.calc = MatrixCalculator()
+
+    def test_matrix_multiplication_2x2(self):
+        """TC-01 Умножение матриц 2x2"""
+
+        a = [
+            [1, 2],
+            [3, 4]
+        ]
+
+        b = [
+            [5, 6],
+            [7, 8]
+        ]
+
+        expected = [
+            [19, 22],
+            [43, 50]
+        ]
+
+        result = self.calc.multiply(a, b)
+
+        self.assertEqual(result, expected)
+
+    def test_identity_matrix(self):
+        """TC-02 Умножение на единичную матрицу"""
+
+        a = [
+            [2, 4],
+            [6, 8]
+        ]
+
+        identity = [
+            [1, 0],
+            [0, 1]
+        ]
+
+        result = self.calc.multiply(a, identity)
+
+        self.assertEqual(result, a)
+
+    def test_zero_matrix(self):
+        """TC-03 Умножение на нулевую матрицу"""
+
+        a = [
+            [1, 2],
+            [3, 4]
+        ]
+
+        zero = [
+            [0, 0],
+            [0, 0]
+        ]
+
+        expected = [
+            [0, 0],
+            [0, 0]
+        ]
+
+        result = self.calc.multiply(a, zero)
+
+        self.assertEqual(result, expected)
+
+    def test_3x3_multiplication(self):
+        """TC-04 Умножение матриц 3x3"""
+
+        a = [
+            [1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 9]
+        ]
+
+        b = [
+            [9, 8, 7],
+            [6, 5, 4],
+            [3, 2, 1]
+        ]
+
+        expected = [
+            [30, 24, 18],
+            [84, 69, 54],
+            [138, 114, 90]
+        ]
+
+        result = self.calc.multiply(a, b)
+
+        self.assertEqual(result, expected)
+
+    def test_cache_creation(self):
+        """TC-05 Проверка кэширования"""
+
+        a = [
+            [1, 2],
+            [3, 4]
+        ]
+
+        b = [
+            [5, 6],
+            [7, 8]
+        ]
+
+        self.calc.multiply(a, b)
+
+        key = self.calc.matrix_key(a, b)
+
+        self.assertIn(key, self.calc.cache)
+
+    def test_cache_usage(self):
+        """TC-06 Проверка использования кэша"""
+
+        a = [
+            [1, 2],
+            [3, 4]
+        ]
+
+        b = [
+            [5, 6],
+            [7, 8]
+        ]
+
+        result1 = self.calc.multiply(a, b)
+        result2 = self.calc.multiply(a, b)
+
+        self.assertEqual(result1, result2)
+
+    def test_matrix_size_1x1(self):
+        """TC-07 Матрица 1x1"""
+
+        a = [[5]]
+        b = [[4]]
+
+        expected = [[20]]
+
+        result = self.calc.multiply(a, b)
+
+        self.assertEqual(result, expected)
+
+    def test_negative_numbers(self):
+        """TC-08 Отрицательные элементы"""
+
+        a = [
+            [-1, 2],
+            [3, -4]
+        ]
+
+        b = [
+            [5, -6],
+            [7, 8]
+        ]
+
+        expected = [
+            [9, 22],
+            [-13, -50]
+        ]
+
+        result = self.calc.multiply(a, b)
+
+        self.assertEqual(result, expected)
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)
