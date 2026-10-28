@@ -1,0 +1,8 @@
+import numpy as np
+
+a = np.array(matrix_a)
+b = np.array(matrix_b)
+
+result = np.matmul(a, b)
+
+print(result)
